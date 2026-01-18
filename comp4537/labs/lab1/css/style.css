@@ -30,3 +30,12 @@
   color: rgba(0, 0, 0, 0.65);
   transform: translateY(0);
 }
+
+.note {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
