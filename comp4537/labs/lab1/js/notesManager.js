@@ -1,8 +1,14 @@
+/* 
+ChatGPT was used to help generate and debug parts of this code, and to simplify lab requirements. 
+I understand every line of the code I submitted. 
+*/
+
+import { STRINGS } from "../lang/messages/en/user.js";
 import { Note } from "./note.js";
 
 // manages loading and saving notes to localStorage
 export class NotesManager {
-  static KEY = "notes";
+  static KEY = STRINGS.NOTES_KEY;
 
   // Loads notes from localStorage, returns an array of note objects
   static load() {
@@ -13,16 +19,6 @@ export class NotesManager {
   // Saves the given array of note objects to localStorage
   static save(notes) {
     localStorage.setItem(this.KEY, JSON.stringify(notes));
-
-    document.getElementById("timestamp").innerText =
-      `Stored at: ${new Date().toLocaleTimeString()}`;
-  }
-
-  // Removes a note by its id and updates localStorage
-  static removeById(id) {
-    const notes = this.load();
-    const updated = notes.filter((n) => n.id !== id);
-    this.save(updated);
   }
 
   // Displays all notes from localStorage

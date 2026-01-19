@@ -1,10 +1,15 @@
+/* 
+ChatGPT was used to help generate and debug parts of this code, and to simplify lab requirements. 
+I understand every line of the code I submitted. 
+*/
+
+
 import { NotesManager } from "./notesManager.js";
 import { STRINGS } from "../lang/messages/en/user.js";
 
 export class Writer {
   // Initializes the Writer by loading and displaying notes
   constructor() {
-
     // set the title of the page
     document.title = STRINGS.WRITERPAGETITLE;
 
@@ -21,9 +26,15 @@ export class Writer {
     const notes = NotesManager.load();
     NotesManager.displayNotes(notes, Writer.removeNote);
 
-    // Set up periodic refresh and saves notes
+    // Set up periodic save of notes every 2 seconds
     setInterval(() => {
-      Writer.refreshNotes();
+      // Gather current texts from all note textareas and map the value to array
+      const texts = Array.from(
+        document.querySelectorAll("#notesContainer textarea"),
+      ).map((t) => t.value);
+
+      // Save the texts to localStorage and update timestamp
+      NotesManager.save(texts);
       NotesManager.updateTimestamp(STRINGS.STORED_AT);
     }, 2000);
   }
@@ -33,17 +44,7 @@ export class Writer {
     const notes = NotesManager.load();
     notes.splice(index, 1); // remove by position
     NotesManager.save(notes);
-    NotesManager.displayNotes(notes, Writer.removeNote);
-  }
-
-  // Refreshes the displayed notes from localStorage
-  static refreshNotes() {
-    // Clear existing notes
-    const container = document.getElementById("notesContainer");
-    container.innerHTML = "";
-
-    // Load and display notes
-    const notes = NotesManager.load();
+    NotesManager.updateTimestamp(STRINGS.STORED_AT);
     NotesManager.displayNotes(notes, Writer.removeNote);
   }
 
@@ -61,6 +62,9 @@ export class Writer {
 
     // save to localStorage
     NotesManager.save(notes);
+
+    // update timestamp after saving
+    NotesManager.updateTimestamp(STRINGS.STORED_AT);
 
     // refresh displayed notes
     NotesManager.displayNotes(notes, Writer.removeNote);

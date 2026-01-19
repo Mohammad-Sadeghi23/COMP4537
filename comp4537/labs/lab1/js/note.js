@@ -1,3 +1,10 @@
+/* 
+ChatGPT was used to help generate and debug parts of this code, and to simplify lab requirements. 
+I understand every line of the code I submitted. 
+*/
+
+import { STRINGS } from "../lang/messages/en/user.js";
+
 // Represents a single note with text area and remove button
 export class Note {
   // Creates a Note instance with given id, text, and remove callback
@@ -10,7 +17,7 @@ export class Note {
     // Set up remove button if callback is provided
     if (removeCallback) {
       this.removeBtn = document.createElement("a");
-      this.removeBtn.innerText = "Remove";
+      this.removeBtn.innerText = STRINGS.REMOVE;
       this.removeBtn.className = "button";
       this.removeBtn.onclick = () => removeCallback(id);
     }
