@@ -1,5 +1,5 @@
 /* 
-ChatGPT was used to help generate and debug parts of this code, and to simplify lab requirements. 
+ChatGPT (https://chat.openai.com/ ) was used to help generate and debug parts of this code, and to simplify lab requirements. 
 I understand every line of the code I submitted. 
 */
 
