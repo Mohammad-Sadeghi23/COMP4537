@@ -7,13 +7,21 @@ export class Note {
     this.textArea.value = text;
     this.textArea.className = "note";
 
-    this.removeBtn = document.createElement("button");
-    this.removeBtn.innerText = "Remove";
-    this.removeBtn.onclick = () => removeCallback(id);
+    // Set up remove button if callback is provided
+    if (removeCallback) {
+      this.removeBtn = document.createElement("a");
+      this.removeBtn.innerText = "Remove";
+      this.removeBtn.className = "button";
+      this.removeBtn.onclick = () => removeCallback(id);
+    }
 
+    // Create a container row for the note
     this.row = document.createElement("div");
     this.row.className = "note-row";
-    this.row.append(this.textArea, this.removeBtn);
+
+    // Append text area and remove button to the row
+    this.row.append(this.textArea);
+    if (this.removeBtn) this.row.append(this.removeBtn);
   }
 
   // Appends the note's DOM elements to the given parent element
