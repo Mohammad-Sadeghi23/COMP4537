@@ -16,7 +16,7 @@ export class Reader {
     const backBtn = document.getElementById("backBtn");
     backBtn.innerText = STRINGS.BACK;
 
-    // Function to render notes and update timestamp
+    // Function to render notes and update timestamp, null removeCallback
     const render = () => {
       NotesManager.displayNotes(NotesManager.load(), null);
       NotesManager.updateTimestamp(STRINGS.UPDATED_AT);

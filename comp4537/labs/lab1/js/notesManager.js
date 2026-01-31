@@ -12,6 +12,7 @@ export class NotesManager {
 
   // Loads notes from localStorage, returns an array of note objects
   static load() {
+    // Retrieve notes from localStorage and parse JSON if exists else return empty array
     const raw = localStorage.getItem(this.KEY);
     return raw ? JSON.parse(raw) : [];
   }
