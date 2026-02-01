@@ -22,17 +22,17 @@ class Server {
             const path = q.pathname;
 
             // if accessing writeFile page
-            if (path.startsWith("/writeFile/")) {
+            if (path.startsWith(STRINGS.BASE + "/writeFile/")) {
 
                 this.handleWriteFile(q, res);
             }
             // if accessing readFile page
-            else if (path.startsWith("/readFile/")) {
+            else if (path.startsWith(STRINGS.BASE +"/readFile/")) {
 
                 this.handleReadFile(path, res);
             }
             // if accessing getDate page
-            else if (path.startsWith("/getDate/")) {
+            else if (path.startsWith(STRINGS.BASE + "/getDate/")) {
 
                 this.handleGetDate(q, res);
             }
@@ -82,7 +82,7 @@ class Server {
     handleReadFile(path, res) {
 
         // get the name of the file to read from the pathname
-        const fileName = path.replace("/readFile/", "");
+        const fileName = path.replace(STRINGS.BASE + "/readFile/", "");
 
         // read the file
         fs.readFile(fileName, function (err, data) {
